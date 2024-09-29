@@ -5,9 +5,9 @@ let promise=new Promise((resolve,reject)=>{
 	},3000)
 })
 promise.then((numbers)=>{
-return number.filter((item)=>item%2==0)
+return numbers.filter((item)=>item%2==0)
 }).then((numbers)=>{
-return number.map((num)=>num*2)
+return numbers.map((num)=>num*2)
 }).then((numbers) => {
     document.getElementById('output').textContent = numbers.toString();
   });
