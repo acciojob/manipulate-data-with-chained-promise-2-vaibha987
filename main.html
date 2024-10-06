@@ -22,7 +22,7 @@
             return new Promise((resolve) => {
                 const filteredArray = numbers.filter(num => num % 2 === 0);
                 setTimeout(() => {
-                    document.getElementById('output').innerText = `Filtered Array (Even Numbers): ${filteredArray}`;
+                    document.getElementById('output').innerText = `Filtered Array (Even Numbers): ${filteredArray.join(', ')}`;
                     resolve(filteredArray);
                 }, 1000); // Updates the DOM after 1 second
             });
@@ -32,7 +32,7 @@
             return new Promise((resolve) => {
                 const multipliedArray = numbers.map(num => num * 2);
                 setTimeout(() => {
-                    document.getElementById('output').innerText += `\nMultiplied Array: ${multipliedArray}`;
+                    document.getElementById('output').innerText += `\nMultiplied Array: ${multipliedArray.join(', ')}`;
                     resolve(multipliedArray);
                 }, 2000); // Updates the DOM after 2 seconds
             });
