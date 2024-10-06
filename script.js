@@ -29,13 +29,12 @@ function manipulateArray() {
     .then(evenNumbers => {
       // Multiply even numbers by 2
       const multipliedNumbers = evenNumbers.map(num => num * 2);
-      // Display multiplied numbers after 2 seconds
+      // Display multiplied numbers after an additional 2 seconds (total 3 seconds from first display)
       return updateOutput(`Multiplied numbers: ${multipliedNumbers.join(', ')}`, 2000);
     })
     .catch(error => {
       document.getElementById('output').textContent = `Error: ${error}`;
     });
 }
-
 // Trigger the function when the DOM is fully loaded
 window.onload = manipulateArray;
