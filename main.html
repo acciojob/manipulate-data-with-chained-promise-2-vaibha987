@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promise Chain Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chained Promises Example</title>
 </head>
 <body>
-  <h1>Promise Chain Example</h1>
-  <div id="output"></div>
- <script src="script.js"></script>
+    <div id="output"></div>
+    <button id="start-button">Start Process</button>
+
+    <script>
+        function manipulateData() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve([1, 2, 3, 4]);
+                }, 3000); // Resolves with the array after 3 seconds
+            });
+        }
+
+        function filterOddNumbers(numbers) {
+            return new Promise((resolve) => {
+                const filteredArray = numbers.filter(num => num % 2 === 0);
+                setTimeout(() => {
+                    document.getElementById('output').innerText = `Filtered Array (Even Numbers): ${filteredArray}`;
+                    resolve(filteredArray);
+                }, 1000); // Updates the DOM after 1 second
+            });
+        }
+
+        function multiplyEvenNumbers(numbers) {
+            return new Promise((resolve) => {
+                const multipliedArray = numbers.map(num => num * 2);
+                setTimeout(() => {
+                    document.getElementById('output').innerText += `\nMultiplied Array: ${multipliedArray}`;
+                    resolve(multipliedArray);
+                }, 2000); // Updates the DOM after 2 seconds
+            });
+        }
+
+        document.getElementById('start-button').addEventListener('click', () => {
+            manipulateData()
+                .then(filterOddNumbers)
+                .then(multiplyEvenNumbers)
+                .catch(error => {
+                    document.getElementById('output').innerText = `Error: ${error}`;
+                });
+        });
+    </script>
 </body>
 </html>
