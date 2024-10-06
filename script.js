@@ -1,9 +1,9 @@
-// Function that returns a promise resolving after 3 seconds with the array
+// Function that returns a promise resolving after a shorter delay (e.g., 1 second)
 function getNumbers() {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve([1, 2, 3, 4]);
-        }, 3000); // Resolving after 3 seconds
+        }, 1000); // Reduce delay for initial promise
     });
 }
 
@@ -12,7 +12,7 @@ function updateOutput(text) {
     document.getElementById('output').innerText = text;
 }
 
-// Chaining promises
+// Chaining promises with adjusted delays
 getNumbers()
     .then((numbers) => {
         // First promise: Filter out odd numbers
@@ -21,7 +21,7 @@ getNumbers()
                 const evenNumbers = numbers.filter(num => num % 2 === 0);
                 updateOutput(`Even numbers: ${evenNumbers.join(', ')}`); // Display filtered even numbers
                 resolve(evenNumbers);
-            }, 1000); // Update after 1 second
+            }, 500); // Reduce delay to 500ms
         });
     })
     .then((evenNumbers) => {
@@ -31,7 +31,7 @@ getNumbers()
                 const doubledNumbers = evenNumbers.map(num => num * 2);
                 updateOutput(`Doubled numbers: ${doubledNumbers.join(', ')}`); // Display doubled even numbers
                 resolve(doubledNumbers);
-            }, 2000); // Update after 2 seconds
+            }, 1000); // Reduce delay to 1 second
         });
     })
     .catch((error) => {
